@@ -5,18 +5,23 @@
  * @format
  */
 
-import React from 'react';
+import React,{Component} from 'react';
 import {
-  View
+  View,
+  Text
 } from 'react-native';
+// import ClassState1 from './components/ClassState1';
 
-const App = () => {
+class App extends Component{
 
-  return (
-    <View>
-  
-    </View>
-  );
-};
+  render(){
+    return(
+      <View>
+        <Text style={{fontSize: 30, color: 'red'}}>Class Component</Text>
+     
+      </View>
+    )
+  }
+}
 
 export default App;
