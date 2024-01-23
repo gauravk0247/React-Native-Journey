@@ -5,23 +5,19 @@
  * @format
  */
 
-import React,{Component} from 'react';
+import React, { useState } from 'react';
 import {
   View,
-  Text
+  Text,
+  Button
 } from 'react-native';
-// import ClassState1 from './components/ClassState1';
-
-class App extends Component{
-
-  render(){
-    return(
-      <View>
-        <Text style={{fontSize: 30, color: 'red'}}>Class Component</Text>
-     
-      </View>
-    )
-  }
+const App = ()=>{
+  const [count, setCount]=useState(0);
+  return (
+    <View>
+    <Text style={{fontSize: 30}}>useEffect as componentDidMount {count}</Text>
+    <Button title="Update Count" onPress={()=>setCount(count+1)}></Button>
+    </View>
+  );
 }
-
 export default App;
