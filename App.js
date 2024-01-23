@@ -11,9 +11,10 @@ import {
 } from 'react-native';
 
 const App = () => {
+
   return (
     <View>
-    
+  
     </View>
   );
 };
