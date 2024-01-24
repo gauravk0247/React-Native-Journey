@@ -15,6 +15,7 @@ const App = () => {
   return (
     <View>
       <StatusBar1/>
+    
     </View>
   );
 }
