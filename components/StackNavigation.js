@@ -1,27 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import {
   View,
   Text,
-  Button,
-  TextInput
+  Button
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Login } from './components/LogIn';
-import { Home } from './components/Home';
 
 const stack = createNativeStackNavigator();
-const App = () => {
-  const btnAction = ()=>{
-    console.warn("Button Press")
-  }
+const StackNavigation = () => {
   return (
     <NavigationContainer>
       <stack.Navigator
@@ -29,21 +16,18 @@ const App = () => {
             headerStyle: {
               backgroundColor: 'blue',
             },
-            headerTintColor: 'skyblue',
+            headerTintColor: 'orange',
             headerTitleStyle: {
               fontSize: 25
             }
           }}>
 
         <stack.Screen name='Login' component={Login}
-          options={{
-            headerTitle: ()=><Button title='left' onPress={btnAction}/>,
-            headerRight: ()=><Header/>,
-            title: "User LogIn",
+          Options={{
             headerStyle: {
-              backgroundColor: 'orange',
+              backgroundColor: 'skyblue',
             },
-            headerTintColor: 'red',
+            headerTintColor: 'white',
             headerTitleStyle: {
               fontSize: 40
             }
@@ -55,8 +39,18 @@ const App = () => {
     </NavigationContainer>
   );
 }
-const Header = ()=>{
-  return <TextInput placeholder='search'/>
+
+const Home = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 30 }}>Home Screen</Text></View>
+  )
+}
+const Login = (props) => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 30 }}>LogIn Screen</Text>
+      <Button title='Go To Home Page' onPress={() => props.navigation.navigate("Home")} />
+    </View>
+  )
 }
 
-export default App;
+export default StackNavigation;
