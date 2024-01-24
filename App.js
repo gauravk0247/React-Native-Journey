@@ -9,13 +9,12 @@ import React from 'react';
 import {
   View
 } from 'react-native';
-import StatusBar1 from './components/StatusBar1';
+import FlexBox from './components/FlexBox';
 
 const App = () => {
   return (
     <View>
-      <StatusBar1/>
-    
+    <FlexBox/>
     </View>
   );
 }
