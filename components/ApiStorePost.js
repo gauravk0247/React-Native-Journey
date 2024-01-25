@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -15,7 +8,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const App = () => {
+const ApiStorePost = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState('');
@@ -117,4 +110,4 @@ const styles = StyleSheet.create({
   } 
 })
 
-export default App;
+export default ApiStorePost;
