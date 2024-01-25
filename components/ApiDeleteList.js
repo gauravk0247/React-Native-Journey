@@ -10,14 +10,11 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
-  Modal
+  Button
 } from 'react-native';
 
-const App = () => {
+const ApiDeleteList = () => {
   const [data, setData] = useState([])
-  const [showModal, setShowModal] = useState(false);
-  const [selectUser, setSelectUser] = useState(undefined);
 
   const getApiData = async () => {
     const url = "http://10.0.2.2:3000/users";
@@ -36,19 +33,13 @@ const App = () => {
     result = await result.json();
     if(result){
       console.warn("User Deleted");
-      getApiData();
+      getApiData()
     }
   }
 
   useEffect(() => {
     getApiData();
   }, [])
-
-  const updatUser = (data)=>{
-    setShowModal(true)
-    setSelectUser(data)
-  }
-
   return (
     <View style={styles.container}>
        <View style={styles.dataWrapper}>
@@ -62,27 +53,13 @@ const App = () => {
             <View style={{flex: 1}}><Text>{item.name}</Text></View>
             <View style={{flex: 1}}><Text>{item.age}</Text></View>
              <View style={{flex: 1}}><Button title="Delete" onPress={()=>deleteUser(item.id)}/></View>
-             <View style={{flex: 1}}><Button title="Update" onPress={()=>updatUser(item)}/></View>
+             <View style={{flex: 1}}><Button title="Update"/></View>
           </View>) : null
       }
-      <Modal visible={showModal} transparent={true}>
-        <UserModal setShowModal={setShowModal} selectUser={selectUser}/>
-      </Modal>
     </View>
   )
 };
 
-const UserModal =(props)=>{
-  console.warn(props.selectUser)
-  return(
-    <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={{textAlign: 'center', fontSize: 19, padding: 5}}>{props.selectUser.name}</Text>
-            <Button title='Close' onPress={()=>props.setShowModal(false)}/>
-          </View>
-        </View>
-  )
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -93,20 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     margin: 5, 
     padding: 5
-  },
-  centeredView:{
-    flex: 1,
-    justifyContent: 'center'
-  },
-  modalView:{
-    backgroundColor: '#fff',
-    padding: 50,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.70, 
-    elevation: 5, 
-    margin: 50
   }
 })
 
-export default App;
+export default ApiDeleteList;
