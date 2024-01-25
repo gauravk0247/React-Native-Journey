@@ -11,7 +11,8 @@ import {
   Text,
   StyleSheet,
   Button,
-  Modal
+  Modal,
+  TextInput
 } from 'react-native';
 
 const App = () => {
@@ -66,7 +67,7 @@ const App = () => {
           </View>) : null
       }
       <Modal visible={showModal} transparent={true}>
-        <UserModal setShowModal={setShowModal} selectUser={selectUser}/>
+        <UserModal setShowModal={setShowModal} selectUser={selectUser} getApiData={getApiData}/>
       </Modal>
     </View>
   )
@@ -74,10 +75,45 @@ const App = () => {
 
 const UserModal =(props)=>{
   console.warn(props.selectUser)
+  const [name, setName] = useState(undefined);
+  const [age, setAge] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
+
+  useEffect(()=>{
+    if(props.selectUser){
+      setName(props.selectUser.name)
+      setAge(props.selectUser.age.toString())
+      setEmail(props.selectUser.email)
+    }
+  }, [props.selectUser])
+
+  const updatUser = async ()=>{
+    const url = "http://10.0.2.2:3000/users";
+    const id = props.selectUser.id;
+    let result = await fetch(`${url}/${id}`,{
+      method: "put",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({name,age,email})
+    })
+    result = await result.json();
+    if(result){
+      console.warn(result);
+      props.getApiData();
+      props.setShowModal(false);
+    }
+  }
   return(
     <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{textAlign: 'center', fontSize: 19, padding: 5}}>{props.selectUser.name}</Text>
+            <TextInput style={styles.input} value={name} onChangeText={(text)=>setName(text)}/>
+            <TextInput style={styles.input} value={age} onChangeText={(text)=>setAge(text)}/>
+            <TextInput style={styles.input} value={email} onChangeText={(text)=>setEmail(text)}/>
+
+            <View style={{marginBottom: 15}}>
+            <Button title='Update' onPress={updatUser}/>
+            </View>
             <Button title='Close' onPress={()=>props.setShowModal(false)}/>
           </View>
         </View>
@@ -96,16 +132,24 @@ const styles = StyleSheet.create({
   },
   centeredView:{
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   modalView:{
     backgroundColor: '#fff',
-    padding: 50,
+    padding: 20,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOpacity: 0.70, 
     elevation: 5, 
-    margin: 50
+    // margin: 50
+  },
+  input:{
+    borderWidth: 1,
+    borderColor: 'skyblue',
+    width: 300,
+    marginBottom: 15,
+    fontSize: 18
   }
 })
 
