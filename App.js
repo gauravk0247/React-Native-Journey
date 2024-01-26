@@ -23,19 +23,19 @@ const App = () => {
       name: 'Samsung Mobile',
       color: 'white',
       price : 30000,
-      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+      image: 'https://i.pinimg.com/originals/af/cc/7d/afcc7dd829be97c8e5eeb76ec40a86ff.png'
     },
     {
       name: 'Apple iPhone',
       color: 'white',
       price : 30000,
-      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+      image: 'https://i.pinimg.com/originals/af/cc/7d/afcc7dd829be97c8e5eeb76ec40a86ff.png'
     },
     {
       name: 'Poco Mobile',
       color: 'white',
       price : 30000,
-      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+      image: 'https://i.pinimg.com/originals/af/cc/7d/afcc7dd829be97c8e5eeb76ec40a86ff.png'
     }
   ]
   return (
