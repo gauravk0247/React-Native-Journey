@@ -1,20 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
-  Button,
-  StyleSheet
+  Button
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const App = () => {
+const AsyncStorage1 = () => {
 
   const [user, setUser] = useState('');
 
@@ -38,25 +30,8 @@ const App = () => {
     <Button title='Set Data' onPress={setData}/>
     <Button title='Get Data' onPress={getData}/>
     <Button title='Remove Data' onPress={removeData}/>
-
-
-    <View style={styles.box}>
-      <Text style={{fontSize: 20, color: "black", textAlign: 'center'}}>Box</Text>
-    </View>
     </View>
   )
 };
 
-const styles = StyleSheet.create({
-  box:{
-    backgroundColor: 'green',
-    height: 100,
-    width: 100,
-    padding: 10,
-    margin: 20,
-    borderColor: 'red',
-    borderWidth: 2
-  }
-})
-
-export default App;
+export default AsyncStorage1;
