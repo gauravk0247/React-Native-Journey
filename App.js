@@ -9,54 +9,45 @@ import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
+  Image,
   Button,
-  StyleSheet
+  ScrollView
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from './components/Header';
+import Product from './components/Product';
 
 const App = () => {
 
-  const [user, setUser] = useState('');
-
- const setData = async () =>{
-  await AsyncStorage.setItem("rak", "Gaurav")
- }
-
- const getData = async () =>{
-  const name = await AsyncStorage.getItem("rak");
-  console.warn(name)
-  setUser(name)
- }
-
- const removeData = async ()=>{
-  await AsyncStorage.removeItem("user")
-  setUser("")
- }
+  const products = [
+    {
+      name: 'Samsung Mobile',
+      color: 'white',
+      price : 30000,
+      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+    },
+    {
+      name: 'Apple iPhone',
+      color: 'white',
+      price : 30000,
+      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+    },
+    {
+      name: 'Poco Mobile',
+      color: 'white',
+      price : 30000,
+      image: 'https://www.shutterstock.com/image-vector/3d-high-quality-vector-mobile-260nw-2121419597.jpg'
+    }
+  ]
   return (
-    <View style={{marginTop: 100, marginLeft: 30, marginRight: 30}}>
-    <Text style={{fontSize: 30}}>AsyncStorage with React Native | {user}</Text>
-    <Button title='Set Data' onPress={setData}/>
-    <Button title='Get Data' onPress={getData}/>
-    <Button title='Remove Data' onPress={removeData}/>
-
-
-    <View style={styles.box}>
-      <Text style={{fontSize: 20, color: "black", textAlign: 'center'}}>Box</Text>
-    </View>
+    <View>
+      <Header/>
+      <ScrollView>
+      {
+        products.map((item)=><Product item={item}/>)
+      }
+      </ScrollView> 
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-  box:{
-    backgroundColor: 'green',
-    height: 100,
-    width: 100,
-    padding: 10,
-    margin: 20,
-    borderColor: 'red',
-    borderWidth: 2
-  }
-})
 
 export default App;
