@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { useRef } from 'react';
 import {
   View,
@@ -14,7 +7,7 @@ import {
   Button
 } from 'react-native';
 
-const App = () => {
+const RefFocus = () => {
   const input = useRef();
 
   const updateUnput= ()=>{
@@ -45,4 +38,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App;
+export default RefFocus;
